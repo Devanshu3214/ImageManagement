@@ -1,39 +1,148 @@
-# Image Management App
-# Open your web browser and navigate to http://16.170.242.2:5000 to view the project.
+# Flask File Upload and Encryption App
 
-## Description
-
-The Image Management App is a web application built using Flask and AWS services that allows users to upload, list, and download images. Users can choose to encrypt their files upon upload, ensuring enhanced security for sensitive data. The application provides functionality to view only encrypted images and download both encrypted and decrypted versions.
+A simple Flask web application that allows users to:
+- Upload files to an AWS S3 bucket.
+- Optionally encrypt files during upload using the `cryptography` library.
+- Download files from the S3 bucket, with an option to decrypt them if they were encrypted.
 
 ## Features
+- **User Authentication**: Users must sign up and log in before uploading or downloading files.
+- **File Upload**: Upload files to an S3 bucket with the option to encrypt them.
+- **File Download**: Download files from the S3 bucket, with the option to decrypt them if they were encrypted.
+- **Encryption**: Uses AES-based encryption (via the `cryptography.fernet` library) to securely encrypt and decrypt files.
+- **AWS S3 Integration**: The app uses `boto3` to manage file storage on AWS S3.
 
-- **Upload Images**: Users can upload images to the application.
-- **Encrypt Files**: Users can opt to encrypt their files during the upload process.
-- **List Uploaded Images**: A user-friendly interface to view all uploaded images.
-- **Download Options**: Users can download images in both encrypted and decrypted formats.
-- **Filter Functionality**: Ability to filter and view only encrypted images.
-
-## Technologies Used
-
-- **Backend**: Python, Flask
-- **Frontend**: HTML, CSS
-- **Cloud Services**: AWS S3 for storage
-- **Encryption**: AES (Advanced Encryption Standard)
-
-## Installation
+## Getting Started
 
 ### Prerequisites
 
-- Python 3.x
-- AWS Account
+Before running the app, ensure you have the following installed:
+- [Python 3.8+](https://www.python.org/downloads/)
+- [Flask](https://flask.palletsprojects.com/)
+- [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
+- [cryptography](https://cryptography.io/en/latest/)
 
-### Set your AWS credentials in a `.env` file (follow the example below):
+### Environment Setup
 
-```makefile
-AWS_ACCESS_KEY_ID=your_access_key
-AWS_SECRET_ACCESS_KEY=your_secret_key
-BUCKET_NAME=your_bucket_name
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-username/flask-s3-encryption-app.git
+    cd flask-s3-encryption-app
+    ```
+
+2. Create and activate a virtual environment (optional but recommended):
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    ```
+
+3. Install the required dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Set up environment variables for AWS and encryption key:
+    ```bash
+    export AWS_ACCESS_KEY_ID='your_aws_access_key'
+    export AWS_SECRET_ACCESS_KEY='your_aws_secret_key'
+    export ENCRYPTION_KEY='your_generated_fernet_key'
+    export FLASK_APP=app.py
+    ```
+
+### Running the Application
+
+To run the Flask app locally, use the following command:
+```bash
+flask run
+# Secure File Storage Application
+```
+By default, the application will run on `http://127.0.0.1:5000/`.
+
+## How to Use
+
+1. **Sign Up**: Create a user account via the `/signup` page.
+2. **Log In**: Log in to access the file upload and download functionality.
+3. **Upload Files**:
+   * Go to the upload page and choose a file.
+   * Optionally select the "Encrypt" checkbox to encrypt the file before uploading.
+4. **Download Files**:
+   * Choose a file from the home page to download.
+   * If the file was encrypted, select the "Decrypt" option to download the decrypted version.
+
+## AWS S3 Bucket Configuration
+
+Ensure your AWS S3 bucket is properly set up, and the necessary credentials are stored in your environment variables. You can use the following structure for your bucket policy:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::your-bucket-name",
+        "arn:aws:s3:::your-bucket-name/*"
+      ]
+    }
+  ]
+}
+```
+
+## Encryption and Decryption
+
+* The app uses the `cryptography.fernet.Fernet` module for symmetric encryption.
+* Files uploaded with the "Encrypt" option will be encrypted using the AES algorithm.
+* When downloading encrypted files, users can choose to decrypt them.
+
+## Screenshots
+
+### Home Page (File List)
+![Signup](https://github.com/user-attachments/assets/05636a3d-8135-4b0c-928a-ae01f2581037)
 
 
 
+### Upload Page
 
+![Home](https://github.com/user-attachments/assets/d62d345a-288d-4507-8940-05d5ae051c9b)
+
+
+### Encrypted File
+
+![Show Encrypted](https://github.com/user-attachments/assets/81787611-6e28-4ff1-852c-8fa7459969d3)
+
+
+## Folder Structure
+
+```
+├── app.py           # Main Flask app
+├── templates/       # HTML templates
+│   ├── index.html   # Home page template
+│   ├── login.html   # Login page template
+│   ├── signup.html  # Signup page template
+├── requirements.txt # List of dependencies
+└── README.md        # This file
+```
+
+## Dependencies
+
+* **Flask**: Web framework.
+* **boto3**: AWS SDK for Python to interact with S3.
+* **cryptography**: For encrypting and decrypting files.
+* **Python-dotenv** (optional): To manage environment variables in a `.env` file.
+
+Install all dependencies using the `requirements.txt` file:
+
+```bash
+pip install -r requirements.txt
+```
+
+
+### Notes:
+- Replace the placeholder GitHub link with the actual repository link.
+- You can update the screenshots with actual images from your application.
+- Ensure to add a LICENSE file if applicable.
