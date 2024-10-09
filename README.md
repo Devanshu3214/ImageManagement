@@ -1,4 +1,4 @@
-# Flask File Upload and Encryption App
+# Image Upload and Encryption App (EC2 || S3)
 
 
 # Deployed Link : http://16.170.242.2:5000/
