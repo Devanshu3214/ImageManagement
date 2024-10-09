@@ -1,5 +1,7 @@
 # Flask File Upload and Encryption App
 
+# Deployed Link : http://16.170.242.2:5000/
+
 A simple Flask web application that allows users to:
 - Upload files to an AWS S3 bucket.
 - Optionally encrypt files during upload using the `cryptography` library.
