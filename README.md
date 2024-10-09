@@ -6,7 +6,7 @@
 
 ## Screenshots
 
-### Home Page (File List)
+### Home Page 
 ![Signup](https://github.com/user-attachments/assets/05636a3d-8135-4b0c-928a-ae01f2581037)
 
 
@@ -85,7 +85,7 @@ Before running the app, ensure you have the following installed:
 
 To run the Flask app locally, use the following command:
 ```bash
-flask run
+python app.py
 # Secure File Storage Application
 ```
 
