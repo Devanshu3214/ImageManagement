@@ -1,4 +1,5 @@
 # Image Management App
+# Open your web browser and navigate to http://16.170.242.2:5000 to view the project.
 
 ## Description
 
