@@ -1,4 +1,3 @@
-﻿# ImageManagement
 # Image Management App
 
 ## Description
