@@ -120,8 +120,3 @@ Install all dependencies using the `requirements.txt` file:
 pip install -r requirements.txt
 ```
 
-
-### Notes:
-- Replace the placeholder GitHub link with the actual repository link.
-- You can update the screenshots with actual images from your application.
-- Ensure to add a LICENSE file if applicable.
