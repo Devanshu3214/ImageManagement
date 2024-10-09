@@ -69,29 +69,6 @@ By default, the application will run on `http://127.0.0.1:5000/`.
    * Choose a file from the home page to download.
    * If the file was encrypted, select the "Decrypt" option to download the decrypted version.
 
-## AWS S3 Bucket Configuration
-
-Ensure your AWS S3 bucket is properly set up, and the necessary credentials are stored in your environment variables. You can use the following structure for your bucket policy:
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:PutObject",
-        "s3:GetObject",
-        "s3:ListBucket"
-      ],
-      "Resource": [
-        "arn:aws:s3:::your-bucket-name",
-        "arn:aws:s3:::your-bucket-name/*"
-      ]
-    }
-  ]
-}
-```
 
 ## Encryption and Decryption
 
